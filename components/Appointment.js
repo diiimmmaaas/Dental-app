@@ -1,33 +1,24 @@
-import {View} from "react-native";
-import styled from "styled-components/native";
+import { View } from 'react-native';
+import styled from 'styled-components/native';
 
-import GrayText from "./GrayText";
+import GrayText from './GrayText';
+import Badge from './Badge';
 
-const Appointment = ({item: {user, diagnosis, active, time, navigation}}) => {
-    return (
-        <GroupItem onPress={() => navigation.navigate("Patient")}>
-            <Avatar
-                source={{uri: user.avatar}}/>
-            <View style={{flex: 1}}>
-                <FullName>{user.fullname}</FullName>
-                <GrayText>{diagnosis}</GrayText>
-            </View>
-            <GroupDate active={active}>{time}</GroupDate>
-        </GroupItem>
-    );
+const Appointment = ({ navigation, item }) => {
+  const {user, diagnosis, active, time} = item
+
+  return (
+    <GroupItem onPress={() => navigation.navigate('Patient' , {...item})}>
+      <Avatar
+        source={{ uri: user.avatar }} />
+      <View style={{ flex: 1 }}>
+        <FullName>{user.fullname}</FullName>
+        <GrayText>{diagnosis}</GrayText>
+      </View>
+        <Badge active={active}>{time}</Badge>
+    </GroupItem>
+  );
 };
-
-const GroupDate = styled.Text`
-  background: ${props => props.active ? "#2A86FF" : "#E9F5FF"};
-  color: ${props => props.active ? "#FFF" : "#4294ff"};
-  border-radius: 18px;
-  font-weight: 600;
-  font-size: 14px;
-  width: 70px;
-  height: 32px;
-  text-align: center;
-  line-height: 30px;
-`;
 
 const FullName = styled.Text`
   font-weight: 600;

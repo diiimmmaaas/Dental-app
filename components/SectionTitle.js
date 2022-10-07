@@ -1,11 +1,6 @@
 import styled from "styled-components/native";
-import {Appointment} from "./Appointment";
 
-Appointment.defaultProps = {
-    title: 'Untitled',
-}
-
-export const SectionTitle = styled.Text`
+export default styled.Text`
   font-weight: 800;
   font-size: 22px;
   color: #000000;

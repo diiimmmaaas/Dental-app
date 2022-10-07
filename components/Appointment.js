@@ -1,9 +1,11 @@
 import {View} from "react-native";
 import styled from "styled-components/native";
 
-export const Appointment = ({user, diagnosis, active, time}) => {
+import GrayText from "./GrayText";
+
+const Appointment = ({item: {user, diagnosis, active, time, navigation}}) => {
     return (
-        <GroupItem>
+        <GroupItem onPress={() => navigation.navigate("Patient")}>
             <Avatar
                 source={{uri: user.avatar}}/>
             <View style={{flex: 1}}>
@@ -15,10 +17,6 @@ export const Appointment = ({user, diagnosis, active, time}) => {
     );
 };
 
-Appointment.defaultProps = {
-    items: []
-};
-
 const GroupDate = styled.Text`
   background: ${props => props.active ? "#2A86FF" : "#E9F5FF"};
   color: ${props => props.active ? "#FFF" : "#4294ff"};
@@ -28,12 +26,7 @@ const GroupDate = styled.Text`
   width: 70px;
   height: 32px;
   text-align: center;
-  line-height: 28px;
-`;
-
-const GrayText = styled.Text`
-  font-size: 16px;
-  color: #8B979F;
+  line-height: 30px;
 `;
 
 const FullName = styled.Text`
@@ -55,3 +48,5 @@ const GroupItem = styled.TouchableOpacity`
   border-bottom-width: 1px;
   border-bottom-color: #f3f3f3
 `;
+
+export default Appointment;
